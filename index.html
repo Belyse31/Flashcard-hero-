@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Hero</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <h1>Flashcard Hero</h1>
+            </div>
+            <p>Create and study flashcards to master any subject</p>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+            </button>
+        </header>
+
+        <!-- Progress Tracker -->
+        <div class="progress-container">
+            <div class="progress-info">
+                <span>Study Progress</span>
+                <span id="progress-percentage">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-stats">
+                <span id="progress-stats">0 of 0 cards completed</span>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-input" placeholder="Search flashcards...">
+            </div>
+            
+            <div class="category-filters" id="category-filters">
+                <button class="category-btn active" data-category="all">All</button>
+                <!-- Categories will be added dynamically -->
+            </div>
+            
+            <button id="add-card-btn" class="btn primary-btn">
+                <i class="fas fa-plus"></i> Add Card
+            </button>
+        </div>
+
+        <!-- Flashcards Container -->
+        <div id="flashcards-container" class="flashcards-grid">
+            <!-- Flashcards will be added dynamically -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-state">
+            <div class="empty-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <p id="empty-message">No flashcards yet. Create your first one!</p>
+            <button id="create-first-btn" class="btn primary-btn">
+                <i class="fas fa-plus"></i> Create Flashcard
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div id="modal-overlay" class="modal-overlay">
+            <div class="modal">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="modal-title">Create New Flashcard</h2>
+                    <button class="modal-close" id="modal-close" title="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="flashcard-form">
+                        <div class="form-group">
+                            <label for="question">Question</label>
+                            <textarea id="question" placeholder="Enter the question" required></textarea>
+                            <span class="error-message" id="question-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="answer">Answer</label>
+                            <textarea id="answer" placeholder="Enter the answer" required></textarea>
+                            <span class="error-message" id="answer-error"></span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="category">Category (optional)</label>
+                            <input type="text" id="category" placeholder="E.g., Math, Science, History">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="cancel-btn" class="btn secondary-btn">Cancel</button>
+                    <button type="button" id="submit-btn" class="btn primary-btn">Create Flashcard</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Container -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
