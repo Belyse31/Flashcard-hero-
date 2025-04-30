@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashcard Hero</title>
+    <title>Flashcard Hero | Master Any Subject</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +27,37 @@
             </button>
         </header>
 
+        <!-- Study Stats Dashboard -->
+        <div class="stats-dashboard">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div class="stat-value" id="total-cards">0</div>
+                <div class="stat-label">Total Cards</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-value" id="cards-due">0</div>
+                <div class="stat-label">Cards Due</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-value" id="cards-mastered">0</div>
+                <div class="stat-label">Mastered</div>
+            </div>
+        </div>
+
+        <!-- Streak Counter -->
+        <div class="streak-counter">
+            <i class="fas fa-fire streak-flame"></i>
+            <span class="streak-text">Your current streak: <span class="streak-value" id="streak-count">0</span> days</span>
+        </div>
+        
         <!-- Progress Tracker -->
         <div class="progress-container">
             <div class="progress-info">
@@ -41,11 +72,18 @@
             </div>
         </div>
 
+        <!-- Study Mode Switch -->
+        <div class="study-mode-switch">
+            <div class="study-mode-option active" data-mode="browse">Browse All</div>
+            <div class="study-mode-option" data-mode="review">Review Due</div>
+            <div class="study-mode-option" data-mode="learn">Learn New</div>
+        </div>
+
         <!-- Controls -->
         <div class="controls">
             <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search flashcards..." aria-label="Search flashcards">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" id="search-input" placeholder="Search flashcards...">
             </div>
             
             <div class="category-filters" id="category-filters">
@@ -56,6 +94,13 @@
             <button id="add-card-btn" class="btn primary-btn">
                 <i class="fas fa-plus"></i> Add Card
             </button>
+        </div>
+
+        <!-- Study Timer (only visible in review mode) -->
+        <div class="study-timer hidden" id="study-timer">
+            <i class="fas fa-stopwatch"></i>
+            <span class="timer-value" id="timer-value">00:00</span>
+            <span class="timer-label">Session time</span>
         </div>
 
         <!-- Flashcards Container -->
@@ -87,19 +132,28 @@
                     <form id="flashcard-form">
                         <div class="form-group">
                             <label for="question">Question</label>
-                            <textarea id="question" placeholder="Enter the question" required></textarea>
+                            <textarea id="question" placeholder="Enter the question (supports markdown)" required></textarea>
                             <span class="error-message" id="question-error"></span>
                         </div>
                         
                         <div class="form-group">
                             <label for="answer">Answer</label>
-                            <textarea id="answer" placeholder="Enter the answer" required></textarea>
+                            <textarea id="answer" placeholder="Enter the answer (supports markdown)" required></textarea>
                             <span class="error-message" id="answer-error"></span>
                         </div>
                         
                         <div class="form-group">
                             <label for="category">Category (optional)</label>
                             <input type="text" id="category" placeholder="E.g., Math, Science, History">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="difficulty">Difficulty</label>
+                            <select id="difficulty" class="form-select">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
                         </div>
                     </form>
                 </div>
